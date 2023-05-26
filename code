@@ -1,0 +1,724 @@
+#include <iostream>
+#include<vector>
+using namespace std;
+int count_id=0;
+vector <int> id;
+vector <double> quan;
+vector <string> name_cust;
+class Customer;
+
+double arr_pric[5];
+struct Node{
+int id;
+string name;
+double price;
+double quantity;
+Node *next;
+
+
+};
+
+
+class productes{ // single linked list
+private:
+int length=0;
+Node *Head,*Last;
+
+public:
+
+                  //Add_at_back
+void Add(){
+
+    Node *newNode = new Node();
+cout<<"\t ID: "; cin>> newNode->id; cout<<endl;
+cout<<"\t Name Of Product : "; cin>> newNode->name; cout<<endl;
+cout<<"\t Price : "; cin>> newNode->price; cout<<endl;
+cout<<"\t Quantity : "; cin>> newNode->quantity; cout<<endl;
+
+if(length==0){
+
+    Head = newNode; newNode->next=NULL;
+    Last = Head;
+
+}
+else{
+        Last->next = newNode;
+    newNode->next = NULL;
+Last = newNode;
+}
+length++;
+ cout<<"\t Success Add\n  ";
+}
+/////////////////////////////////////////////
+
+
+void Remove(){ // id of product
+    int x;
+    if(length==0){
+        cout<<"\tList is Empty...\n";
+    }
+    else{
+            cout<<"\tEnter id which you wanted deleted: ";
+      cin>>x;
+    Node *cur,*prev;
+     if(Head->id==x){
+            cur = Head;    Head = Head->next;
+     delete cur;
+length--;
+    }
+    else{
+        cur = Head->next; prev = Head;
+        while(cur!= NULL){
+            if(cur->id==x){
+                break;
+            }
+            prev = cur; cur = cur->next;
+        }
+        if(cur==NULL){
+            cout<<"\t product not found!\n";
+        }
+        else{
+            prev->next = cur->next;
+
+            delete cur;
+            length--;
+        }
+
+
+    }
+     cout<<"\t Success Deleted\n  ";
+      Display();
+    }
+
+}
+///////////////////////////////////////////
+
+void Display(){
+    if(length==0){
+        cout<<"\t List is Empty\n";
+    }
+    else{
+            cout<<"ID "<<"\t \t"<<"Name "<<"\t\t "<<"Price "<< "\t \t"<<"Quanitity \t \t" <<endl;
+   Node *curr;
+   curr=Head;
+   while(curr!=NULL){
+   cout<<curr->id<<"\t \t"
+   <<curr->name<<"\t \t"<<curr->price<< "\t \t"<<curr->quantity<<endl;
+       curr = curr-> next;
+
+  }
+   }
+  }
+////////////////////////// // //
+
+Node Search(int x){
+Node *curr=Head;
+if(length==0){
+    cout<<"\t List is empty...\n";
+
+}
+else{
+while(curr!=NULL){
+if(curr->id==x){
+    return *curr;
+}
+
+curr = curr->next;
+
+}
+
+
+}
+cout<<"\t Product is not found\n";
+
+}
+//////
+Node *se=Head;
+void Search_stack(int x){
+
+if(length==0){
+    cout<<"\t List is empty...\n";
+
+}
+else{
+while(se!=NULL){
+if(se->id==x){
+    cout<<endl<<se->id<< "\t "<<se->name<<"\t "<<se->price<<"\t "
+    <<endl;
+}
+
+se = se->next;
+
+}
+
+
+}
+//productes s;
+// Search_stack(Display_car());
+
+}
+
+/*
+void Modify(int x){
+Node *curr=Head;
+if{
+ while(curr!=NULL)
+{
+if(curr->id==x)
+    {
+        break;
+    }
+    curr = curr->next;
+}
+if(curr==NULL){
+       cout<<"product not found!\n";
+}
+else{
+        cout<<"found the product... \n";
+
+cout<<"New ID: "; cin>> ->id; cout<<endl;
+cout<<"New Name Of Product : "; cin>> newNode->name; cout<<endl;
+cout<<"New Price : "; cin>> newNode->price; cout<<endl;
+cout<<"New Quantity : "; cin>> newNode->quantity; cout<<endl;
+
+
+}
+}}
+*/
+
+void modify(){
+    int x;
+    Node *curr = Head;
+if(length==0){
+    cout<<"\t Not found products..\n ";
+}
+else{
+    Display();
+    cout<<"\t Enter the ID of the product you want to modify: ";
+    cin>>x;
+  //*curr = Search(x);
+  while(curr!=NULL){
+if(curr->id==x){
+   break;
+}
+
+curr = curr->next;
+
+}
+
+     cout<<"\t Enter new name of product: "; cin>>curr->name;
+     cout<<"\t Enter new price of product: "; cin>>curr->price;
+     cout<<"\t Enter new quantity of product: "; cin>>curr->quantity;
+
+   cout<<endl;
+    cout<<"\t Success Modify\n  ";
+   cout<<"\t New list \n";
+   Display();
+
+}
+
+
+
+
+
+
+}
+
+
+double Search_id_print(int i){
+Node *curr=Head;
+
+while(curr!=NULL){
+if(curr->id==i){
+
+cout<<curr->id<<"\t \t"<<curr->name<<"\t \t"<<curr->price<< "\t \t";
+}
+
+curr = curr->next;
+
+}
+
+
+}
+//////
+
+///
+
+double re_pric(int i){
+    Node *curr=Head;
+    while(curr!=NULL){
+        if(curr->id==i)
+       return (curr->price);
+
+        curr = curr->next;
+    }
+
+
+
+}
+
+//*/
+
+
+void mod_qunt(int x, double q){
+Node *curr = Head;
+while(curr!=NULL){
+   if(curr->id==x){
+        if(q > curr->quantity)
+        cout<<"\t There is not enough quantity!\n";
+   else
+    curr->quantity = curr->quantity - q;
+   }
+   curr = curr->next;
+
+}
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+     friend class Customer;
+friend void countt(productes p, Customer c);
+
+
+
+
+};
+
+
+/// //////////////////////////////////////////////////////////////////////////     ///
+
+struct Nnode{
+int ID;
+double quant;
+Nnode *next;
+};
+                         /// /////////////////////////////////////////////////////////// ///
+
+
+
+
+class Customer{
+int length=0;
+public:
+
+Nnode *top = NULL,*Last=NULL;
+
+void car(){
+
+	cout<<"   \t\t\t                  ___ "<<endl;
+	    cout<<"\t\t\t                 /  |"<<endl;
+	    cout<<"\t\t\t  ______________/   --"<<endl;
+	    cout<<"\t\t\t |___/__ /___/_|     "<<endl;
+	    cout<<"\t\t\t |__/___/___/__|     "<<endl;
+	    cout<<"\t\t\t |_/___/___/___|     "<<endl;
+	    cout<<"\t\t\t    _______/         "<<endl;
+	    cout<<"\t\t\t     O   O           "<<endl;
+
+
+}
+
+     ///            //     //          Linked_Stack        //               //                        ///
+
+void Push_stack(){
+    //productes pr;
+
+Nnode *newNode = new Nnode();
+cout<<"\t Enter the ID of the product you want to purchase: ";
+cin>>newNode->ID;
+id.push_back(newNode->ID);
+cout<<"\t Enter the quantity you want: ";
+cin>>newNode->quant;
+quan.push_back(newNode->quant);
+count_id++;
+//pr.mod_qunt(newNode->ID,newNode->quant);
+if(length==0){
+newNode->next= NULL;
+top = newNode ;
+Last = newNode ;
+
+}
+else{
+  top=  newNode -> next;
+
+    top = newNode;
+}
+length++;
+}
+/*
+void Pop_stack(int x){
+    Nnode *curr = top, *priv;
+    if(length==0){
+        cout<<"\t Car is Empty!\n";
+    }
+    else if(top->ID==x){
+       top = top->next;
+       curr->next=NULL;
+        delete curr;
+    }
+    else{
+        curr->next = top;
+       priv->next = curr;
+
+    while(curr!=NULL){
+        if(curr->ID==x){
+        priv->next = curr->next;
+        curr->next = NULL;
+        delete curr;
+        }
+        curr = curr->next;
+         priv->next = curr;
+    }
+
+    }
+  length--;
+
+
+}
+*/
+
+void Pop_stack2(){
+    Nnode *curr = top;
+    if(length==0){
+        cout<<"\t Car is Empty!\n";
+    }
+    else {
+       top = top->next;
+      // curr->next=NULL;
+        delete curr;
+    }
+
+  length--;
+
+
+}
+void Pop_stack(int x){
+
+    for(int i=0;i<count_id;i++){
+        if(id[i]==x){
+           id.erase(id.begin()+i);
+quan.erase(quan.begin()+i);}
+
+    }
+
+cout<<"\tSuccess Deleted\n ";
+
+}
+/// /// ////////////////// /// ///
+
+    Nnode *dis =top;
+
+int Display_car(){
+if(length==0){
+    cout<<"\t The Car is Empty!\n";
+
+}
+else{
+        while(dis!=NULL){
+            return dis->ID;
+            dis = dis->next ;
+        }
+            //dis = dis->next;
+
+
+}
+//Display_car();
+}
+/*
+void account(){
+productes p;
+Nnode *curr = Last;
+double sum;
+while(curr!=NULL){
+  //  sum += curr->quant *
+
+}
+/*
+
+
+}
+        /// return id
+        /*
+int re_id(){
+Nnode *curr=top;
+
+while(curr!=NULL){
+        return curr->ID;
+
+  curr =  curr->next;
+    }
+}
+
+
+
+*/
+~Customer(){
+top = Last =NULL;
+}
+
+friend class productes;
+friend void countt(productes p, Customer c);
+
+} ;
+
+/*
+void countt(productes p, Customer c){
+  Nnode *curr = c.top;
+ // Node *temp = p.Head;
+    double sum;
+    while(curr!=NULL){
+int y = p.Search_count->((curr->&ID));
+
+    sum += curr->quant * y;
+
+
+    curr->next = curr;
+    }
+
+cout<<endl<<"Sum = "<<sum<<endl;
+
+
+
+}
+
+*/
+/*
+void caca(){
+double sum;
+productes pp;
+//cout<<"d = "<<pp.re_pric(id[0])<<endl;
+for(int i=0;i<count_id;i++){
+        double d=(pp.re_pric(id[i]));
+
+sum =sum + (quan[i]) * d;
+
+}
+cout<<endl<<"Sum = "<<sum<<endl;
+
+}
+
+*/
+
+int main()
+
+{
+    	cout<<"\t \t\t\t ------------------------------------------\t   \t "<<endl;
+
+    cout<<" \t \t \t \t\t ||  Shopping Club System  ||\t \t \t \t \t \t  \n \n";
+    	cout<<"\t \t\t\t ------------------------------------------\t  \t "<<endl;
+
+    cout<<"\t \t\t\t     >>>----Project Implemented By-----<<<\t \t \t \n \n";
+    cout<<"\t \t \t \t \t  Amged Abdelhamid  200013215\t \t \n \n \n\n\n ";
+    productes p; Customer cu;
+    int c;
+do{
+          cout<<"\n\t\t|--------<Main Menu>-----------|\n\n";
+
+    cout<<"\t\t 1) Administrator of Market\n";
+    cout<<"\t\t 2) The Purchasing\n";
+    cout<<"\t\t 3) Exit Program\n\n";
+
+    cout<<"\t Enter Your choice >>> ";
+    cin>>c;
+     if(c==1){
+    do{
+
+        cout<<"\t 1) Add Product\n";
+        cout<<"\t 2) Modify Product\n";
+        cout<<"\t 3) Remove Product\n";
+        cout<<"\t 4) Display Products\n";
+        cout<<"\t 5) Display Customers' Names\n";
+        cout<<"\t 0) Back\n\n";
+        cout<<"\n\t Enter Your choice >>>";
+
+        cin>>c;
+     cout<<"\n";
+      if(c==1){
+        p.Add();
+      }
+      else if(c==2){
+        p.modify();
+      }
+      else if(c==3){
+            int x;
+            p.Display();
+
+        p.Remove();
+
+      }
+      else if(c==4){
+        p.Display();
+      }
+else if(c==5){
+        if(name_cust.size()==0){
+
+            cout<<"\tList is empty!\n\n";
+        }
+        else{
+
+            for(int i=0;i<count_id;i++){
+            cout<<"\t"<<name_cust[i]<<"\n";
+            }
+        }
+      }
+
+//if(c==0)
+  //  break;
+
+    }while(c!=0);
+
+     }
+     else if(c==2){
+            int x;
+        do{
+                string ss;
+                cu.car();
+            p.Display();
+            cu.Push_stack();
+            cout<<"\n\t\t\tPlease enter your name: ";
+            //cin>>ss;
+            cin.ignore(1,'\n');
+            getline(cin,ss);
+            name_cust.push_back(ss);
+        cout<<"\n\n\n";
+            do{
+                    int i=0;
+/*
+                    for(int i=0;i<count_id;i++){
+                    p.mod_qunt(id[i],quan[i]);
+                    }*/
+                     p.mod_qunt(id[i],quan[i]);
+                    cout<<"\n\n";
+         cout<<"\t\t 1) Do you want to make another purchase? ";
+         cout<<endl<<"\t\t 2) Do you want to remove a product from the cart? ";
+         cout<<endl<<"\t\t 3) Account? ";
+         cout<<endl<<"\t\t 4) Display products in Car? ";
+                  cout<<endl<<"\t\t 5) Display products in Car And Account? \n\n";
+
+         cin>>x;
+
+vector<int>delet;
+                  if(x==1){
+                         p.Display();
+                      cu.Push_stack();
+            // continue;
+         }
+         else if(x==2){
+                int y;
+          cout<<" \tEnter ID which you deleted: ";
+         cin>>y;
+         cout<<endl;
+         cu.Pop_stack(y);
+
+
+         }
+         else if(x==3){ ///
+                /*
+              //  for(int i=0;i<id.size()-1;i++){
+                    cout<<id[0]
+                    <<"   "<<quan[0]<<endl<<count_id<<endl;
+
+              //  }
+   caca();*/
+   double sum=0;
+
+for(int i=0;i<count_id;i++){
+        double d=(p.re_pric(id[i]));
+
+sum =sum + (quan[i]) * d;
+
+}
+cout<<endl<<"\t\t\t \t Account = "<<sum<<endl;
+
+         }
+        else if(x==4){
+            cout<<"ID "<<"\t \t"<<"Name "<<"\t\t "<<"Price "<< "\t \t"<<"Quanitity \t \t" <<endl;
+
+        for(int i=0;i<count_id;i++){
+       p.Search_id_print(id[i]);
+      cout<<quan[i]<<endl;
+
+
+}
+
+
+
+     }
+
+     else if(x==5){
+            cout<<"ID "<<"\t \t"<<"Name "<<"\t\t "<<"Price "<< "\t \t"<<"Quantity \t \t" <<endl;
+
+        for(int i=0;i<count_id;i++){
+       p.Search_id_print(id[i]);
+      cout<<quan[i]<<endl;
+
+
+}
+
+            // p.Search_stack(cu.Display_car());
+char cc;
+     cout<<"\t you want buy again?(Y/N) "; cin>>cc;
+     if(cc=='N'){
+            double sum=0;
+
+//cout<<"d = "<<pp.re_pric(id[0])<<endl;
+for(int i=0;i<count_id;i++){
+        double d=(p.re_pric(id[i]));
+
+sum =sum + (quan[i]) * d;
+
+}
+cout<<endl<<"\t\t\t \t Account = "<<sum<<endl;
+id.clear();
+quan.clear();
+            cout<<"\n\n\t~~~\t~~~\t~~~\t~~~\tThank You\t~~~\t~~~\t~~~\t~~~\n\n";
+        break;
+     }
+
+
+
+
+
+
+     else{
+
+         p.Display();
+     continue;
+
+     }
+     }
+
+
+         else{
+            break;
+         }
+
+         i++;
+}while(x!=0);
+
+break;
+
+      }while(c!=0);
+
+
+
+
+     }
+ else if(c==3){
+            	cout<<"\n\n\t~~~\t~~~\t~~~\t~~~\tThank You\t~~~\t~~~\t~~~\t~~~\n\n";
+
+        return 0;
+    }
+}while(c!=3);
+
+    return 0;
+}
